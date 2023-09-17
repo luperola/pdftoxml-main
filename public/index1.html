@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-eclsquiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <title>Read the pdf file</title>
+    <script src="index.js"></script>
+    <script src="HCl.js"></script>
+    <script src="CS.js"></script>
+    <script src="CF4.js"></script>
+    <script src="C4F8.js"></script>
+    <script src="TCS.js"></script>
+    <script src="HBr.js"></script>
+    <script src="NO.js"></script>
+  </head>
+
+  <body>
+    <!-- post the file -->
+    <h1 style="padding-left: 20px">From .pdf file to .xml file</h1>
+    <br />
+
+    <div>
+      <p
+        id="instructions"
+        style="
+          color: blue;
+          margin-left: 20px;
+          font-style: italic;
+          display: inline;
+        "
+      >
+        <span
+          >I PNs sotto hanno eCOA dedicato - Clicca sul relativo button per
+          proseguire
+        </span>
+        <br />
+        <span style="margin-left: 20px">
+          <u
+            >Per tutti gli altri prodotti clicca 'Scegli file', fai upload del
+            file .pdf e poi scegli il PN dalla 'Supplier List'</u
+          >
+        </span>
+        <br />
+      </p>
+    </div>
+    <div
+      class="container"
+      id="contenitore"
+      style="padding-top: 30px; padding-left: 20px"
+    >
+      <div class="row">
+        <div class="col-sm">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            id="CSPage"
+            onclick="window.open('CS.html', '_blank').focus();"
+          >
+            Chlorgas eCOA Page
+          </button>
+          <br />
+          <br />
+          <button
+            type="button"
+            class="btn btn-secondary"
+            id="TCSPage"
+            style="margin-left: 20px"
+            onclick="window.open('TCS.html', '_blank').focus();"
+          >
+            TCS eCOA Page
+          </button>
+        </div>
+        <div class="col-sm">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            id="NOTaulovPage"
+            style="margin-left: 20px"
+            onclick="window.open('NO.html', '_blank').focus();"
+          >
+            NO eCOA Page
+          </button>
+          <br />
+          <br />
+          <button
+            type="button"
+            class="btn btn-secondary"
+            id="HBrPage"
+            style="margin-left: 20px"
+            onclick="window.open('HBr.html', '_blank').focus();"
+          >
+            HBr eCOA Page
+          </button>
+        </div>
+        <div class="col-sm">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            id="HF18USPage"
+            style="margin-left: 20px"
+            onclick="window.open('HF18US.html', '_blank').focus();"
+          >
+            HF 1.8Kg 3GASC254 eCOA Page
+          </button>
+          <br />
+          <br />
+          <button
+            type="button"
+            class="btn btn-secondary"
+            id="HF36USPage"
+            style="margin-left: 20px"
+            onclick="window.open('HF36US.html', '_blank').focus();"
+          >
+            HF 3.6Kg 3GASCB78 eCOA Page
+          </button>
+          <br />
+          <br />
+          <button
+            type="button"
+            class="btn btn-secondary"
+            id="HFGHPage"
+            style="margin-left: 20px"
+            onclick="window.open('HFGH.html', '_blank').focus();"
+          >
+            HF 3GASCC21 Gerling Holz eCOA Page
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <form
+      method="POST"
+      action="/upload"
+      enctype="multipart/form-data"
+      style="padding-top: 40px; padding-left: 20px; color: blue"
+      name="id"
+      id="id"
+    >
+      <div>
+        <input type="file" name="myFile" id="fileUpload" multiple />
+      </div>
+      <br />
+      <div>
+        <input type="submit" name="btn_upload" value="Upload" />
+      </div>
+    </form>
+    <br />
+    <!-- dropdown menu -->
+
+    <div
+      id="btndropdown"
+      class="btn-group"
+      style="padding: 20px; display: inline"
+    >
+      <button
+        type="button"
+        class="btn btn-primary dropdown-toggle"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Supplier list
+      </button>
+      <span id="fine" style="color: blue; display: none">
+        Download OK. Scegli il supplier cliccando sotto
+      </span>
+      <div class="dropdown-menu" id="">
+        <div class="link-list-wrapper">
+          <ul class="link-list" style="width: 300px">
+            <li>
+              <a class="list-item" href="#" onclick="WackerHClAGR()"
+                ><span>Wacker HCl kg 550 Agrate</span></a
+              >
+            </li>
+            <li>
+              <a class="list-item" href="#" onclick="WackerHClCAT()"
+                ><span>Wacker HCl kg 660 Catania</span></a
+              >
+            </li>
+            <li>
+              <a class="list-item" href="#" onclick="HongInAGR()"
+                ><span>Hong In drums Agrate </span></a
+              >
+            </li>
+            <li>
+              <a class="list-item" href="#" onclick="HongInCAT()"
+                ><span>Hong In drums Catania</span></a
+              >
+            </li>
+            <li>
+              <a class="list-item" href="TCS.html"
+                ><span>TCS Burghausen Agrate</span></a
+              >
+            </li>
+            <li>
+              <a class="list-item" href="TCS.html"
+                ><span>TCS Burghausen Catania</span></a
+              >
+            </li>
+            <li>
+              <a class="list-item" href="NO.html"
+                ><span>Nitric Oxide Tavlov</span></a
+              >
+            </li>
+            <li>
+              <a class="list-item" href="#" onclick="C4F8AGR()"
+                ><span>C4F8 Perfuorocyclobutane Agrate</span></a
+              >
+            </li>
+            <li>
+              <a class="list-item" href="#" onclick="C4F8CAT()"
+                ><span>C4F8 Perfuorocyclobutane Catania</span></a
+              >
+            </li>
+            <li>
+              <a class="list-item" href="#" onclick="CF4()"
+                ><span>CF4 Tetrafluoromethane from BOC</span></a
+              >
+            </li>
+            <li>
+              <a class="list-item" href="#" onclick="F2KrNeAGR()"
+                ><span>F2/Kr/Ne Agrate</span></a
+              >
+            </li>
+            <li>
+              <a class="list-item" href="#" onclick="F2KrNeCAT()"
+                ><span>F2/Kr/Ne Catania</span></a
+              >
+            </li>
+            <li>
+              <a class="list-item" href="#" onclick="F2ArNe()"
+                ><span>F2/Ar/Ne Agrate</span></a
+              >
+            </li>
+            <li>
+              <a class="list-item" href="HBr.html"><span>HBr Catania</span></a>
+            </li>
+            <li>
+              <a class="list-item" href="HF18US.html"
+                ><span>HF Medford 1.8 Kg 3GASC254 </span></a
+              >
+            </li>
+
+            <li>
+              <a class="list-item" href="HF36US.html"
+                ><span>HF Medford 3.6 Kg 3GASCB78 </span></a
+              >
+            </li>
+            <li>
+              <a class="list-item" href="HFGH.html"
+                ><span>HF Gerling Holz</span></a
+              >
+            </li>
+            <li>
+              <a class="list-item" href="#" onclick="KrNeAGR()"
+                ><span>Kr/Ne Agrate</span></a
+              >
+            </li>
+            <li>
+              <a class="list-item" href="#" onclick="KrNeCAT()"
+                ><span>Kr/Ne Catania</span></a
+              >
+            </li>
+            <li>
+              <a class="list-item" href="#" onclick="ArXeNe()"
+                ><span>Ar/ Xe/ Ne Agrate</span></a
+              >
+            </li>
+            <li>
+              <a class="list-item" href="#" onclick="SF6US()"
+                ><span>SF6 3GASN906 da LEL/US </span></a
+              >
+            </li>
+            <li>
+              <a class="list-item" href="#" onclick="SF6BOC()"
+                ><span>SF6 3GASN326 da BOC </span></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- end dropdown -->
+
+    <!-- button to open Chlorgas Instruction modal -->
+
+    <!-- <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#ModalCS"
+      id="modalCS"
+      style="margin-left: 20px"
+    >
+      Chlorgas / NO Tavlov instructions
+    </button> -->
+
+    <!-- Modal -->
+
+    <!-- <div
+      class="modal fade"
+      id="ModalCS"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="ModalLabelCS"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ModalLabelCS">Chlorgas eCOA uploads</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <pre>Cliccare qui sotto per aprire ocr.space </pre>
+            <pre>caricare eCOA Chlorgas o NO Tavlov in .pdf</pre>
+            <pre>scegliere opzione 'Just extract text ...' </pre>
+            <pre>e anche 'Use OCR Engine 1'</pre>
+            <pre>cliccare 'Start OCR!', scaricare il file .txt e salvarlo</pre>
+            <pre>tornare in home page</pre>
+            <pre>caricare il file. txt sul sito ('Scegli file' + 'Upload')</pre>
+            <pre>cliccare 'Supplier List'</pre>
+            <pre>cliccare 'Chlorgas drums' o 'Nitric Oxide Tavlov'</pre>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <a type="button" href="https://ocr.space/" class="btn btn-primary"
+              >Go to website to switch from .pdf to .txt file</a
+            >
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- end of modal -->
+    <br /><br />
+
+    <!-- HF manufacturing date, delivery date e #cylinder da spedire-->
+    <div id="dataHF" style="margin-left: 20px; display: none">
+      <label for="start" style="color: blue"
+        >Data manufacturing HF Gerling Holz</label
+      ><br />
+      <div class="input-group">
+        <input
+          type="date"
+          id="start"
+          name="trip-start"
+          required="required"
+          style="
+            color: blue;
+            height: 40px;
+            border-radius: 5px;
+            border-color: lightblue;
+            padding-left: 15px;
+            margin-left: 20px;
+          "
+        />
+        <span class="input-group-btn">
+          <button
+            class="btn btn-primary"
+            onclick="manDateHF()"
+            style="margin-left: 5px"
+          >
+            Invia
+          </button></span
+        >
+      </div>
+    </div>
+    <div id="deliveryDate" style="margin-left: 20px; display: none">
+      <label for="delivery" style="color: blue"
+        >Data consegna HF Gerling Holz</label
+      ><br />
+      <div class="input-group">
+        <input
+          type="date"
+          id="delivery"
+          name="trip-start"
+          required="required"
+          style="
+            color: blue;
+            height: 40px;
+            border-radius: 5px;
+            border-color: lightblue;
+            padding-left: 15px;
+            margin-left: 20px;
+          "
+        />
+        <span class="input-group-btn">
+          <button
+            class="btn btn-primary"
+            onclick="delDateHF()"
+            style="margin-left: 5px"
+          >
+            Invia
+          </button></span
+        >
+      </div>
+    </div>
+    <div id="cylDelivered" style="margin-left: 20px; display: none">
+      <label for="nbrCyl" style="color: blue">Numero BB HF da spedire</label
+      ><br />
+      <div class="input-group">
+        <input
+          type="number"
+          id="nbrCyl"
+          name="nbrCylHF"
+          required="required"
+          style="
+            color: blue;
+            height: 40px;
+            width: 180px;
+            border-radius: 5px;
+            border-color: lightblue;
+            padding-left: 15px;
+            margin-left: 20px;
+          "
+        />
+        <span class="input-group-btn">
+          <button
+            class="btn btn-primary"
+            onclick="cylQtyHF()"
+            style="margin-left: 5px"
+          >
+            Invia
+          </button></span
+        >
+      </div>
+    </div>
+    <div id="batch" style="margin-left: 20px; display: none">
+      <label for="batchNbr" style="color: blue">Batch Number</label><br />
+      <div class="input-group">
+        <input
+          type="text"
+          id="batchNbr"
+          name="nbrBatchHF"
+          required="required"
+          style="
+            color: blue;
+            height: 40px;
+            width: 180px;
+            border-radius: 5px;
+            border-color: lightblue;
+            padding-left: 15px;
+            margin-left: 20px;
+          "
+        />
+        <span class="input-group-btn">
+          <button
+            class="btn btn-primary"
+            onclick="batchHF()"
+            style="margin-left: 5px"
+          >
+            Invia
+          </button></span
+        >
+      </div>
+    </div>
+
+    <!-- input for containers # -->
+    <div id="container">
+      <div id="cyl1" style="display: none; margin-left: 20px">
+        <label for="cylOne" style="color: blue">Bombola #1</label><br />
+        <div class="input-group">
+          <input
+            type="text"
+            id="cylOne"
+            name="nbrCylHF"
+            required="required"
+            style="
+              color: blue;
+              height: 40px;
+              width: 90px;
+              border-radius: 5px;
+              border-color: lightblue;
+              padding-left: 15px;
+              margin-left: 20px;
+            "
+          />
+          <span class="input-group-btn">
+            <button
+              class="btn btn-primary"
+              onclick="cylOneHF()"
+              style="margin-left: 5px"
+            >
+              Invia
+            </button></span
+          >
+        </div>
+      </div>
+      <div id="cyl2" style="display: none; margin-left: 20px">
+        <label for="cylTwo" style="color: blue">Bombola #2</label><br />
+        <div class="input-group">
+          <input
+            type="text"
+            id="cylTwo"
+            name="nbrCylHF"
+            required="required"
+            style="
+              color: blue;
+              height: 40px;
+              width: 90px;
+              border-radius: 5px;
+              border-color: lightblue;
+              padding-left: 15px;
+              margin-left: 20px;
+            "
+          />
+          <span class="input-group-btn">
+            <button
+              class="btn btn-primary"
+              onclick="cylTwoHF()"
+              style="margin-left: 5px"
+            >
+              Invia
+            </button></span
+          >
+        </div>
+      </div>
+      <div id="cyl3" style="display: none; margin-left: 20px">
+        <label for="cylThree" style="color: blue">Bombola #3</label><br />
+        <div class="input-group">
+          <input
+            type="text"
+            id="cylThree"
+            name="nbrCylHF"
+            required="required"
+            style="
+              color: blue;
+              height: 40px;
+              width: 90px;
+              border-radius: 5px;
+              border-color: lightblue;
+              padding-left: 15px;
+              margin-left: 20px;
+            "
+          />
+          <span class="input-group-btn">
+            <button
+              class="btn btn-primary"
+              onclick="cylThreeHF()"
+              style="margin-left: 5px"
+            >
+              Invia
+            </button></span
+          >
+        </div>
+      </div>
+      <div id="cyl4" style="display: none; margin-left: 20px">
+        <label for="cylFour" style="color: blue">Bombola #4</label><br />
+        <div class="input-group">
+          <input
+            type="text"
+            id="cylFour"
+            name="nbrCylHF"
+            required="required"
+            style="
+              color: blue;
+              height: 40px;
+              width: 90px;
+              border-radius: 5px;
+              border-color: lightblue;
+              padding-left: 15px;
+              margin-left: 20px;
+            "
+          />
+          <span class="input-group-btn">
+            <button
+              class="btn btn-primary"
+              onclick="cylFourHF()"
+              style="margin-left: 5px"
+            >
+              Invia
+            </button></span
+          >
+        </div>
+      </div>
+    </div>
+    <div id="cyl5" style="display: none; margin-left: 20px">
+      <label for="cylFive" style="color: blue">Bombola #5</label><br />
+      <div class="input-group">
+        <input
+          type="text"
+          id="cylFive"
+          name="nbrCylHF"
+          required="required"
+          style="
+            color: blue;
+            height: 40px;
+            width: 90px;
+            border-radius: 5px;
+            border-color: lightblue;
+            padding-left: 15px;
+            margin-left: 20px;
+          "
+        />
+        <span class="input-group-btn">
+          <button
+            class="btn btn-primary"
+            onclick="cylFiveHF()"
+            style="margin-left: 5px"
+          >
+            Invia
+          </button></span
+        >
+      </div>
+    </div>
+    <div id="cyl6" style="display: none; margin-left: 20px">
+      <label for="cylSix" style="color: blue">Bombola #6</label><br />
+      <div class="input-group">
+        <input
+          type="text"
+          id="cylSix"
+          name="nbrCylHF"
+          required="required"
+          style="
+            color: blue;
+            height: 40px;
+            width: 90px;
+            border-radius: 5px;
+            border-color: lightblue;
+            padding-left: 15px;
+            margin-left: 20px;
+          "
+        />
+        <span class="input-group-btn">
+          <button
+            class="btn btn-primary"
+            onclick="cylSixHF()"
+            style="margin-left: 5px"
+          >
+            Invia
+          </button></span
+        >
+      </div>
+    </div>
+    <div id="cyl7" style="display: none; margin-left: 20px">
+      <label for="cylSeven" style="color: blue">Bombola #7</label><br />
+      <div class="input-group">
+        <input
+          type="text"
+          id="cylSeven"
+          name="nbrCylHF"
+          required="required"
+          style="
+            color: blue;
+            height: 40px;
+            width: 90px;
+            border-radius: 5px;
+            border-color: lightblue;
+            padding-left: 15px;
+            margin-left: 20px;
+          "
+        />
+        <span class="input-group-btn">
+          <button
+            class="btn btn-primary"
+            onclick="cylSevenHF()"
+            style="margin-left: 5px"
+          >
+            Invia
+          </button></span
+        >
+      </div>
+    </div>
+    <div id="cyl8" style="display: none; margin-left: 20px">
+      <label for="cylEight" style="color: blue">Bombola #8</label><br />
+      <div class="input-group">
+        <input
+          type="text"
+          id="cylEight"
+          name="nbrCylHF"
+          required="required"
+          style="
+            color: blue;
+            height: 40px;
+            width: 90px;
+            border-radius: 5px;
+            border-color: lightblue;
+            padding-left: 15px;
+            margin-left: 20px;
+          "
+        />
+        <span class="input-group-btn">
+          <button
+            class="btn btn-primary"
+            onclick="cylEightHF()"
+            style="margin-left: 5px"
+          >
+            Invia
+          </button></span
+        >
+      </div>
+    </div>
+    <br />
+    <div id="HF" style="margin-left: 20px; display: none">
+      <input
+        type="button"
+        onclick="HFData()"
+        value="Procedi"
+        class="btn btn-primary"
+      />
+    </div>
+
+    <!-- ------------------------------------- -->
+    <!-- Chlorgas # of lines in ecOA -->
+    <div id="qtyinputCS" style="padding-left: 20px; display: none">
+      <p id="supplierHongIn" style="display: none; font-size: large">
+        Chlorgas HCl drums
+      </p>
+      <br />
+      <label id="label1" for="test" class="label" style="padding-left: 20px">
+        Numero dei lotti (righe) nell'eCOA Chlorgas</label
+      >
+      <input id="CoaLinesCS" type="number" style="width: 60px" />
+      <button
+        id="btnqty"
+        class="btn btn-primary"
+        style="width: 50px"
+        onclick="ChlorgasLines()"
+      >
+        OK
+      </button>
+    </div>
+    <br />
+    <p id="qtyPagesCS" style="padding-left: 20px; display: none"></p>
+    <br />
+
+    <!-- Nitric Oxide Tavlov wrong date format -->
+    <div id="MfgDateTav1" style="margin-left: 20px; display: none">
+      <label for="MfgTav1" style="color: blue"
+        >Data produzione Nitric Oxide Tavlov</label
+      ><br />
+      <div class="input-group">
+        <input
+          type="date"
+          id="MfgTav1"
+          name="tripTav1-start"
+          required="required"
+          style="
+            color: blue;
+            height: 40px;
+            border-radius: 5px;
+            border-color: lightblue;
+            padding-left: 15px;
+            margin-left: 20px;
+          "
+        />
+        <span class="input-group-btn">
+          <button
+            id="btnTav1"
+            class="btn btn-primary"
+            onclick="delDateNOTavlov()"
+            style="margin-left: 5px"
+          >
+            Invia
+          </button></span
+        >
+      </div>
+    </div>
+    <br />
+    <div id="delDateTav1" style="margin-left: 20px; display: none">
+      <label for="delTav1" style="color: blue"
+        >Data consegna Nitric Oxide Tavlov</label
+      ><br />
+      <div class="input-group">
+        <input
+          type="date"
+          id="delTav1"
+          name="newstart"
+          required="required"
+          style="
+            color: blue;
+            height: 40px;
+            border-radius: 5px;
+            border-color: lightblue;
+            padding-left: 15px;
+            margin-left: 20px;
+          "
+        />
+        <span class="input-group-btn">
+          <button
+            id="btnTav2"
+            class="btn btn-primary"
+            onclick="NitricOxideTavlov()"
+            style="margin-left: 5px"
+          >
+            Invia
+          </button></span
+        >
+      </div>
+    </div>
+    <br />
+
+    <!-- Input per le correzioni -->
+    <!-- Correzione Manufacturing Date HCl Wacker 
+    <div id="HClMfgDateCorrection" style="margin-left: 20px; display: none">
+      <label for="mfgDateCorrected" style="color: blue"
+        >Data manufacturing HCl Wacker</label
+      >
+      <div class="input-group">
+        <input
+          type="date"
+          id="mfgDateCorrected"
+          name="trip-start"
+          required="required"
+          style="
+            color: blue;
+            height: 40px;
+            border-radius: 5px;
+            border-color: lightblue;
+            padding-left: 15px;
+            margin-left: 20px;
+          "
+        />
+        <span class="input-group-btn">
+          <button
+            class="btn btn-primary"
+            onclick="MfgHClWackerCorrected()"
+            style="margin-left: 5px"
+          >
+            Invia
+          </button></span
+        >
+      </div>
+    </div>
+    <br />-->
+    <!-- download button -->
+    <div id="btndown" style="padding-left: 20px; display: none">
+      <a href="\download" class="btn btn-primary">
+        Click here to download the xml file
+      </a>
+      <br /><br />
+    </div>
+
+    <!-- End download button -->
+    <!-- Home button -->
+    <button
+      id="btnHome"
+      onclick="goHome()"
+      style="margin-left: 20px; display: none"
+      class="btn btn-primary"
+    >
+      Reset and upload another file
+    </button>
+    <!-- end home button -->
+
+    <script>
+      function goHome() {
+        window.location.href = "index.html";
+      }
+    </script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
